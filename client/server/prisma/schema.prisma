@@ -13,50 +13,14 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  FLEET_MANAGER
-  DISPATCHER
-  SAFETY_OFFICER
-  FINANCIAL_ANALYST
-}
-
-enum VehicleStatus {
-  AVAILABLE
-  ON_TRIP
-  IN_SHOP
-  RETIRED
-}
-
-enum DriverStatus {
-  AVAILABLE
-  ON_TRIP
-  OFF_DUTY
-  SUSPENDED
-}
-
-enum TripStatus {
-  DRAFT
-  DISPATCHED
-  COMPLETED
-  CANCELLED
-}
-
-enum MaintenanceStatus {
-  ACTIVE
-  COMPLETED
-}
-
-enum ExpenseCategory {
-  TOLL
-  MISC
-}
+// SQLite-compatible scalar fields are used for local/dev portability.
 
 model User {
   id           String   @id @default(cuid())
   name         String
   email        String   @unique
   passwordHash String
-  role         Role
+  role         String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
@@ -70,7 +34,7 @@ model Vehicle {
   odometer        Float         @default(0)
   acquisitionCost Float         @default(0)
   region          String?
-  status          VehicleStatus @default(AVAILABLE)
+  status          String        @default("AVAILABLE")
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
 
@@ -89,7 +53,7 @@ model Driver {
   contact         String
   safetyScore     Int          @default(100)
   completionRate  Int          @default(0)
-  status          DriverStatus @default(AVAILABLE)
+  status          String       @default("AVAILABLE")
   createdAt       DateTime     @default(now())
   updatedAt       DateTime     @updatedAt
 
@@ -104,7 +68,7 @@ model Trip {
   cargoWeightKg     Float
   plannedDistanceKm Float
   revenue           Float      @default(0)
-  status            TripStatus @default(DRAFT)
+  status            String     @default("DRAFT")
 
   startOdometer Float?
   endOdometer   Float?
@@ -129,7 +93,7 @@ model MaintenanceLog {
   serviceType String
   cost        Float             @default(0)
   date        DateTime          @default(now())
-  status      MaintenanceStatus @default(ACTIVE)
+  status      String            @default("ACTIVE")
   notes       String?
   createdAt   DateTime          @default(now())
   updatedAt   DateTime          @updatedAt
@@ -153,7 +117,7 @@ model FuelLog {
 
 model Expense {
   id        String          @id @default(cuid())
-  category  ExpenseCategory
+  category  String
   amount    Float
   date      DateTime        @default(now())
   note      String?
