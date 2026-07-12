@@ -259,7 +259,7 @@ TransitOps
 
 | Name | Responsibility |
 |------|----------------|
-| 👨‍💻 Aman Jaiswal | Analytics • Integration • Backend |
+| 👨‍💻 Aman Jaiswal | Analytics • Integration |
 | 👨‍💻 Ayush Awasthi | Frontend • UI/UX |
 | 👨‍💻 Neel Lapsiwala | Backend • Authentication |
 | 👨‍💻 Rohit Prajapat | Fleet Logic • Dispatch Engine |
