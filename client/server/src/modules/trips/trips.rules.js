@@ -15,14 +15,14 @@ export function assertDispatchable(vehicle, driver, cargoWeightKg, { ignoreOnTri
       `Vehicle ${vehicle.regNumber} is ${vehicle.status.replace('_', ' ').toLowerCase()} and cannot be dispatched`,
     );
   }
-  if (!ignoreOnTrip && vehicle.status === 'ON_TRIP') {
-    throw ApiError.conflict(`Vehicle ${vehicle.regNumber} is already on a trip`);
+  if (!ignoreOnTrip && ['ON_TRIP', 'ASSIGNED', 'IN_PROGRESS'].includes(vehicle.status)) {
+    throw ApiError.conflict(`Vehicle ${vehicle.regNumber} is already committed to another trip`);
   }
   if (driver.status === 'SUSPENDED') {
     throw ApiError.conflict(`Driver ${driver.name} is suspended and cannot be assigned`);
   }
-  if (!ignoreOnTrip && driver.status === 'ON_TRIP') {
-    throw ApiError.conflict(`Driver ${driver.name} is already on a trip`);
+  if (!ignoreOnTrip && ['ON_TRIP', 'ASSIGNED', 'IN_PROGRESS'].includes(driver.status)) {
+    throw ApiError.conflict(`Driver ${driver.name} is already committed to another trip`);
   }
   if (new Date(driver.licenseExpiry).getTime() < Date.now()) {
     throw ApiError.conflict(`Driver ${driver.name}'s license has expired`);

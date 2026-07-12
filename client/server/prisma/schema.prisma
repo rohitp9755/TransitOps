@@ -70,9 +70,12 @@ model Trip {
   revenue           Float      @default(0)
   status            String     @default("DRAFT")
 
-  startOdometer Float?
-  endOdometer   Float?
-  fuelConsumedL Float?
+  plannedStart   DateTime?
+  plannedEnd     DateTime?
+  startedAt      DateTime?
+  startOdometer  Float?
+  endOdometer    Float?
+  fuelConsumedL  Float?
 
   dispatchedAt DateTime?
   completedAt  DateTime?

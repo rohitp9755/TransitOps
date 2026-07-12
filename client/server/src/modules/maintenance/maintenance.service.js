@@ -27,6 +27,24 @@ export async function openMaintenance(data) {
     throw ApiError.conflict('Retired vehicles cannot be serviced');
   }
 
+  const existing = await prisma.maintenanceLog.findFirst({
+    where: { vehicleId: data.vehicleId, status: 'ACTIVE' },
+  });
+  if (existing) {
+    throw ApiError.conflict('There is already an active maintenance record for this vehicle');
+  }
+
+  const conflictingTrip = await prisma.trip.findFirst({
+    where: {
+      vehicleId: data.vehicleId,
+      status: { in: ['SCHEDULED', 'ASSIGNED', 'STARTED', 'IN_PROGRESS'] },
+      plannedEnd: { gte: new Date() },
+    },
+  });
+  if (conflictingTrip) {
+    throw ApiError.conflict('This vehicle has an active or scheduled trip and cannot enter maintenance');
+  }
+
   return prisma.$transaction(async (tx) => {
     const record = await tx.maintenanceLog.create({ data: { ...data, status: 'ACTIVE' }, include });
     await tx.vehicle.update({ where: { id: vehicle.id }, data: { status: 'IN_SHOP' } });
@@ -45,7 +63,15 @@ export async function closeMaintenance(id) {
       where: { id }, data: { status: 'COMPLETED' }, include,
     });
     if (record.vehicle.status !== 'RETIRED') {
-      await tx.vehicle.update({ where: { id: record.vehicleId }, data: { status: 'AVAILABLE' } });
+      const activeTrip = await tx.trip.findFirst({
+        where: {
+          vehicleId: record.vehicleId,
+          status: { in: ['ASSIGNED', 'STARTED', 'IN_PROGRESS'] },
+        },
+      });
+      if (!activeTrip) {
+        await tx.vehicle.update({ where: { id: record.vehicleId }, data: { status: 'AVAILABLE' } });
+      }
     }
     return updated;
   });
