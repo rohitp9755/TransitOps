@@ -51,8 +51,8 @@ export default function Maintenance() {
 
       <div className="grid gap-4 lg:grid-cols-2">
         {editable && (
-          <Card className="p-5">
-            <h2 className="mb-4 text-sm font-semibold text-slate-200">Log Service Record</h2>
+          <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+            <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Log Service Record</h2>
             <div className="space-y-4">
               <Field label="Vehicle">
                 <Select value={form.vehicleId} onChange={set('vehicleId')}>
@@ -70,8 +70,8 @@ export default function Maintenance() {
           </Card>
         )}
 
-        <Card className={editable ? '' : 'lg:col-span-2'}>
-          <div className="border-b border-ink-800 px-5 py-3"><h2 className="text-sm font-semibold text-slate-200">Service Log</h2></div>
+        <Card className={`${editable ? '' : 'lg:col-span-2'} bg-ink-900/95 shadow-sm shadow-black/20`}>
+          <div className="border-b border-ink-800 px-5 py-4 bg-ink-900/90"><h2 className="text-sm font-semibold text-slate-200">Service Log</h2></div>
           {logs.loading ? (
             <Spinner />
           ) : logs.error ? (

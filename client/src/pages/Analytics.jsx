@@ -43,19 +43,19 @@ export default function Analytics() {
         <Button variant="secondary" onClick={exportCsv}>Export CSV</Button>
       </PageHeader>
 
-      <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
         {cards.map((c) => (
-          <Card key={c.label} className={`border-l-4 p-4 ${c.accent}`}>
-            <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{c.label}</p>
-            <p className="mt-2 text-2xl font-bold text-slate-100">{c.value}</p>
+          <Card key={c.label} className={`border-l-4 bg-ink-900/95 p-5 shadow-sm shadow-black/20 ${c.accent}`}>
+            <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">{c.label}</p>
+            <p className="mt-4 text-3xl font-bold tracking-tight text-slate-100">{c.value}</p>
           </Card>
         ))}
       </div>
-      <p className="mt-2 text-xs text-slate-500">ROI = (Revenue − (Maintenance + Fuel)) ÷ Acquisition Cost</p>
+      <p className="mt-4 text-xs text-slate-500">ROI = (Revenue − (Maintenance + Fuel)) ÷ Acquisition Cost</p>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-2">
-        <Card className="p-5">
-          <h2 className="mb-5 text-sm font-semibold text-slate-200">Monthly Revenue</h2>
+        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Monthly Revenue</h2>
           {monthlyRevenue.length === 0 ? (
             <p className="py-8 text-center text-sm text-slate-500">No completed trips yet</p>
           ) : (
@@ -72,8 +72,8 @@ export default function Analytics() {
           )}
         </Card>
 
-        <Card className="p-5">
-          <h2 className="mb-5 text-sm font-semibold text-slate-200">Top Costliest Vehicles</h2>
+        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Top Costliest Vehicles</h2>
           <div className="space-y-4">
             {topCostliest.map((v, i) => {
               const colors = ['bg-status-retired', 'bg-status-inshop', 'bg-status-ontrip', 'bg-slate-500', 'bg-slate-600'];

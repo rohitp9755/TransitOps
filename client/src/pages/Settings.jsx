@@ -54,8 +54,8 @@ export default function Settings() {
       <PageHeader title="Settings & RBAC" subtitle="Organization configuration and access control" />
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card className="p-5">
-          <h2 className="mb-4 text-sm font-semibold text-slate-200">General</h2>
+        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">General</h2>
           <div className="space-y-4">
             <Field label="Depot Name"><Input value={general.depotName} onChange={set('depotName')} disabled={!editable} /></Field>
             <Field label="Currency"><Input value={general.currency} onChange={set('currency')} disabled={!editable} /></Field>
@@ -69,8 +69,8 @@ export default function Settings() {
           </div>
         </Card>
 
-        <Card className="p-5">
-          <h2 className="mb-4 text-sm font-semibold text-slate-200">Role-Based Access (RBAC)</h2>
+        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Role-Based Access (RBAC)</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>

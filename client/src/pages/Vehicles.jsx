@@ -38,7 +38,7 @@ export default function Vehicles() {
         {editable && <Button onClick={openAdd}>+ Add Vehicle</Button>}
       </PageHeader>
 
-      <div className="mb-4 flex flex-wrap gap-3">
+      <div className="mb-6 flex flex-wrap items-center gap-3">
         <Input
           placeholder="Search reg no. or name…"
           value={filters.search}
@@ -55,7 +55,7 @@ export default function Vehicles() {
         </Select>
       </div>
 
-      <Card>
+      <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
         {loading ? (
           <Spinner />
         ) : error ? (
@@ -64,9 +64,9 @@ export default function Vehicles() {
           <EmptyState title="No vehicles found" hint="Try clearing filters or add a vehicle." />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="min-w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-slate-500">
+                <tr className="bg-ink-900 text-left text-xs uppercase tracking-wide text-slate-500">
                   <th className="px-5 py-3 font-medium">Reg No.</th>
                   <th className="px-5 py-3 font-medium">Name / Model</th>
                   <th className="px-5 py-3 font-medium">Type</th>
@@ -79,8 +79,8 @@ export default function Vehicles() {
               </thead>
               <tbody>
                 {data.map((v) => (
-                  <tr key={v.id} className="border-t border-ink-800/70 hover:bg-ink-850/40">
-                    <td className="px-5 py-3 font-medium text-slate-200">{v.regNumber}</td>
+                  <tr key={v.id} className="border-t border-ink-800/70 hover:bg-ink-950/60">
+                    <td className="px-5 py-4 font-medium text-slate-200">{v.regNumber}</td>
                     <td className="px-5 py-3 text-slate-300">{v.name}</td>
                     <td className="px-5 py-3 text-slate-400">{v.type}</td>
                     <td className="px-5 py-3 text-slate-400">{currency(v.maxLoadKg)} kg</td>

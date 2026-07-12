@@ -2,9 +2,9 @@ import { STATUS_STYLES } from '../lib/constants.js';
 
 export function Button({ variant = 'primary', className = '', ...props }) {
   const base =
-    'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50';
+    'inline-flex items-center justify-center gap-2 rounded-2xl px-4 py-2 text-sm font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-50 focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-950';
   const variants = {
-    primary: 'bg-primary text-white hover:bg-primary-hover',
+    primary: 'bg-primary text-slate-950 shadow-sm shadow-primary/20 hover:bg-primary-hover',
     secondary: 'bg-ink-800 text-slate-200 hover:bg-ink-700 border border-ink-700',
     ghost: 'text-slate-300 hover:bg-ink-800',
     danger: 'bg-status-retired/15 text-status-retired hover:bg-status-retired/25 border border-status-retired/30',
@@ -23,7 +23,7 @@ export function Field({ label, error, children }) {
 }
 
 const inputBase =
-  'w-full rounded-lg border border-ink-700 bg-ink-800 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 focus:border-primary disabled:opacity-60';
+  'w-full rounded-2xl border border-ink-700 bg-ink-800 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-500 transition duration-200 focus:border-primary focus:ring-2 focus:ring-primary/20 disabled:opacity-60';
 
 export function Input(props) {
   return <input className={inputBase} {...props} />;
@@ -38,14 +38,14 @@ export function Select({ children, ...props }) {
 }
 
 export function Card({ className = '', ...props }) {
-  return <div className={`rounded-xl border border-ink-700 bg-ink-900 ${className}`} {...props} />;
+  return <div className={`rounded-[1.75rem] border border-ink-700 bg-ink-900/95 shadow-[0_18px_40px_rgba(0,0,0,0.22)] ${className}`} {...props} />;
 }
 
 export function Badge({ status }) {
   const s = STATUS_STYLES[status] ?? STATUS_STYLES.OFF_DUTY;
   return (
-    <span className={`inline-flex items-center gap-1.5 rounded-md px-2.5 py-1 text-xs font-semibold ${s.tint} ${s.text}`}>
-      <span className={`h-1.5 w-1.5 rounded-full ${s.bg}`} />
+    <span className={`inline-flex items-center gap-2 rounded-full px-3 py-1.5 text-xs font-semibold ${s.tint} ${s.text}`}>
+      <span className={`h-2 w-2 rounded-full ${s.bg}`} />
       {s.label}
     </span>
   );

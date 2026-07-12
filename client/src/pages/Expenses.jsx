@@ -35,8 +35,8 @@ export default function Expenses() {
       </PageHeader>
 
       <div className="space-y-4">
-        <Card>
-          <div className="border-b border-ink-800 px-5 py-3"><h2 className="text-sm font-semibold text-slate-200">Fuel Logs</h2></div>
+        <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
+          <div className="border-b border-ink-800 px-5 py-4 bg-ink-900/90"><h2 className="text-sm font-semibold text-slate-200">Fuel Logs</h2></div>
           <SimpleTable
             state={fuel}
             columns={['Vehicle', 'Date', 'Litres', 'Cost']}
@@ -44,8 +44,8 @@ export default function Expenses() {
           />
         </Card>
 
-        <Card>
-          <div className="border-b border-ink-800 px-5 py-3"><h2 className="text-sm font-semibold text-slate-200">Other Expenses (Toll / Misc)</h2></div>
+        <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
+          <div className="border-b border-ink-800 px-5 py-4 bg-ink-900/90"><h2 className="text-sm font-semibold text-slate-200">Other Expenses (Toll / Misc)</h2></div>
           <SimpleTable
             state={expenses}
             columns={['Category', 'Vehicle', 'Trip', 'Amount']}
@@ -53,8 +53,8 @@ export default function Expenses() {
           />
         </Card>
 
-        <Card className="p-5">
-          <div className="flex items-center justify-between">
+        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
               <p className="text-sm font-semibold text-slate-200">Total Operational Cost</p>
               <p className="text-xs text-slate-500">Auto = Fuel + Maintenance across the fleet</p>

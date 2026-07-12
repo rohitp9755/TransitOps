@@ -3,9 +3,30 @@
 @tailwind utilities;
 
 @layer base {
-  body {
-    @apply bg-ink-950 text-slate-200 antialiased;
+  :root {
+    color-scheme: dark;
+    color: #e2e8f0;
+    background-color: #07070a;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-ink-950 text-slate-200 antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top left, rgba(229,133,11,0.14), transparent 20%),
+      radial-gradient(circle at top right, rgba(59,130,246,0.1), transparent 20%);
+    pointer-events: none;
+    z-index: -1;
+  }
+
   :focus-visible {
     @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-ink-950;
   }

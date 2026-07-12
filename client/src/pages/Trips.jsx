@@ -86,10 +86,10 @@ export default function Trips() {
       <div className="grid gap-4 lg:grid-cols-2">
         {/* Create trip */}
         {editable && (
-          <Card className="p-5">
+          <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
             <Stepper current="DRAFT" />
-            <h2 className="mb-4 mt-5 text-sm font-semibold text-slate-200">Create Trip</h2>
-            <div className="space-y-4">
+            <h2 className="mb-5 mt-6 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Create Trip</h2>
+            <div className="space-y-5">
               <div className="grid grid-cols-2 gap-3">
                 <Field label="Source"><Input value={form.source} onChange={set('source')} placeholder="Gandhinagar Depot" /></Field>
                 <Field label="Destination"><Input value={form.destination} onChange={set('destination')} placeholder="Ahmedabad Hub" /></Field>
@@ -127,19 +127,21 @@ export default function Trips() {
                 </div>
               )}
 
-              <div className="flex gap-2">
+              <div className="flex flex-col gap-3 sm:flex-row">
                 <Button onClick={createAndDispatch} disabled={!canSubmit || busy} className="flex-1">
                   {busy ? 'Dispatching…' : 'Dispatch'}
                 </Button>
-                <Button variant="secondary" onClick={() => setForm(EMPTY)} disabled={busy}>Clear</Button>
+                <Button variant="secondary" onClick={() => setForm(EMPTY)} disabled={busy} className="w-full sm:w-auto">
+                  Clear
+                </Button>
               </div>
             </div>
           </Card>
         )}
 
         {/* Live board */}
-        <Card className={`p-5 ${editable ? '' : 'lg:col-span-2'}`}>
-          <h2 className="mb-4 text-sm font-semibold text-slate-200">Live Board</h2>
+        <Card className={`p-6 bg-ink-900/95 shadow-sm shadow-black/20 ${editable ? '' : 'lg:col-span-2'}`}>
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Live Board</h2>
           {board.loading ? (
             <Spinner />
           ) : board.error ? (
@@ -149,8 +151,8 @@ export default function Trips() {
           ) : (
             <div className="space-y-3">
               {board.data.map((t) => (
-                <div key={t.id} className="rounded-lg border border-ink-800 bg-ink-850/40 p-4">
-                  <div className="flex items-start justify-between">
+                <div key={t.id} className="rounded-[1.5rem] border border-ink-800 bg-ink-950/70 p-5 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
+                  <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                       <p className="text-sm font-semibold text-slate-200">{t.code}</p>
                       <p className="text-xs text-slate-400">{t.source} → {t.destination}</p>

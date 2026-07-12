@@ -18,9 +18,9 @@ const STATUS_BAR_ORDER = ['AVAILABLE', 'ON_TRIP', 'IN_SHOP', 'RETIRED'];
 
 function KpiCard({ label, value, accent, suffix }) {
   return (
-    <Card className={`border-l-4 p-4 ${accent}`}>
-      <p className="text-[11px] font-medium uppercase tracking-wide text-slate-500">{label}</p>
-      <p className="mt-2 text-2xl font-bold text-slate-100">
+    <Card className={`border-l-4 bg-ink-900/95 p-5 shadow-sm shadow-black/20 ${accent}`}>
+      <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-slate-500">{label}</p>
+      <p className="mt-4 text-3xl font-bold tracking-tight text-slate-100">
         {value}
         {suffix}
       </p>
@@ -48,18 +48,18 @@ export default function Dashboard() {
       </div>
 
       <div className="mt-6 grid gap-4 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
-          <div className="border-b border-ink-800 px-5 py-3">
+        <Card className="lg:col-span-2 overflow-hidden bg-ink-900/95 shadow-sm shadow-black/20">
+          <div className="border-b border-ink-800 px-5 py-4 bg-ink-900/90">
             <h2 className="text-sm font-semibold text-slate-200">Recent Trips</h2>
           </div>
           <div className="overflow-x-auto">
-            <table className="w-full text-sm">
+            <table className="min-w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-slate-500">
-                  <th className="px-5 py-2.5 font-medium">Trip</th>
-                  <th className="px-5 py-2.5 font-medium">Vehicle</th>
-                  <th className="px-5 py-2.5 font-medium">Driver</th>
-                  <th className="px-5 py-2.5 font-medium">Status</th>
+                <tr className="bg-ink-900 text-left text-xs uppercase tracking-wide text-slate-500">
+                  <th className="px-5 py-3 font-medium">Trip</th>
+                  <th className="px-5 py-3 font-medium">Vehicle</th>
+                  <th className="px-5 py-3 font-medium">Driver</th>
+                  <th className="px-5 py-3 font-medium">Status</th>
                 </tr>
               </thead>
               <tbody>
@@ -67,11 +67,11 @@ export default function Dashboard() {
                   <tr><td colSpan={4} className="px-5 py-6 text-center text-slate-500">No trips yet</td></tr>
                 )}
                 {recentTrips.map((t) => (
-                  <tr key={t.id} className="border-t border-ink-800/70">
-                    <td className="px-5 py-3 font-medium text-slate-200">{t.code}</td>
-                    <td className="px-5 py-3 text-slate-400">{t.vehicle}</td>
-                    <td className="px-5 py-3 text-slate-400">{t.driver}</td>
-                    <td className="px-5 py-3"><Badge status={t.status} /></td>
+                  <tr key={t.id} className="border-t border-ink-800/70 hover:bg-ink-950/50">
+                    <td className="px-5 py-4 font-medium text-slate-200">{t.code}</td>
+                    <td className="px-5 py-4 text-slate-400">{t.vehicle}</td>
+                    <td className="px-5 py-4 text-slate-400">{t.driver}</td>
+                    <td className="px-5 py-4"><Badge status={t.status} /></td>
                   </tr>
                 ))}
               </tbody>
@@ -79,7 +79,7 @@ export default function Dashboard() {
           </div>
         </Card>
 
-        <Card className="p-5">
+        <Card className="p-5 bg-ink-900/95 shadow-sm shadow-black/20">
           <h2 className="mb-4 text-sm font-semibold text-slate-200">Vehicle Status</h2>
           <div className="space-y-3">
             {STATUS_BAR_ORDER.map((status) => {

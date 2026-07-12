@@ -25,7 +25,7 @@ export default function Drivers() {
         {editable && <Button onClick={() => setModalOpen(true)}>+ Add Driver</Button>}
       </PageHeader>
 
-      <Card>
+      <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
         {loading ? (
           <Spinner />
         ) : error ? (
@@ -48,8 +48,8 @@ export default function Drivers() {
               </thead>
               <tbody>
                 {data.map((d) => (
-                  <tr key={d.id} className="border-t border-ink-800/70 hover:bg-ink-850/40">
-                    <td className="px-5 py-3 font-medium text-slate-200">{d.name}</td>
+                  <tr key={d.id} className="border-t border-ink-800/70 hover:bg-ink-950/60">
+                    <td className="px-5 py-4 font-medium text-slate-200">{d.name}</td>
                     <td className="px-5 py-3 text-slate-400">{d.licenseNumber}</td>
                     <td className="px-5 py-3 text-slate-400">{d.licenseCategory}</td>
                     <td className="px-5 py-3">
