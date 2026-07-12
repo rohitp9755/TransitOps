@@ -1,0 +1,171 @@
+// TransitOps data model.
+// Master data: User, Vehicle, Driver.
+// Transactional data: Trip, MaintenanceLog, FuelLog, Expense.
+// SQLite is used for zero-config local/hackathon setup; the schema is
+// portable to Postgres by swapping the datasource provider only.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  FLEET_MANAGER
+  DISPATCHER
+  SAFETY_OFFICER
+  FINANCIAL_ANALYST
+}
+
+enum VehicleStatus {
+  AVAILABLE
+  ON_TRIP
+  IN_SHOP
+  RETIRED
+}
+
+enum DriverStatus {
+  AVAILABLE
+  ON_TRIP
+  OFF_DUTY
+  SUSPENDED
+}
+
+enum TripStatus {
+  DRAFT
+  DISPATCHED
+  COMPLETED
+  CANCELLED
+}
+
+enum MaintenanceStatus {
+  ACTIVE
+  COMPLETED
+}
+
+enum ExpenseCategory {
+  TOLL
+  MISC
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Vehicle {
+  id              String        @id @default(cuid())
+  regNumber       String        @unique
+  name            String
+  type            String
+  maxLoadKg       Float
+  odometer        Float         @default(0)
+  acquisitionCost Float         @default(0)
+  region          String?
+  status          VehicleStatus @default(AVAILABLE)
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
+
+  trips        Trip[]
+  maintenance  MaintenanceLog[]
+  fuelLogs     FuelLog[]
+  expenses     Expense[]
+}
+
+model Driver {
+  id              String       @id @default(cuid())
+  name            String
+  licenseNumber   String       @unique
+  licenseCategory String
+  licenseExpiry   DateTime
+  contact         String
+  safetyScore     Int          @default(100)
+  completionRate  Int          @default(0)
+  status          DriverStatus @default(AVAILABLE)
+  createdAt       DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+
+  trips Trip[]
+}
+
+model Trip {
+  id                String     @id @default(cuid())
+  code              String     @unique
+  source            String
+  destination       String
+  cargoWeightKg     Float
+  plannedDistanceKm Float
+  revenue           Float      @default(0)
+  status            TripStatus @default(DRAFT)
+
+  startOdometer Float?
+  endOdometer   Float?
+  fuelConsumedL Float?
+
+  dispatchedAt DateTime?
+  completedAt  DateTime?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  driverId  String
+  driver    Driver  @relation(fields: [driverId], references: [id])
+
+  fuelLogs FuelLog[]
+  expenses Expense[]
+}
+
+model MaintenanceLog {
+  id          String            @id @default(cuid())
+  serviceType String
+  cost        Float             @default(0)
+  date        DateTime          @default(now())
+  status      MaintenanceStatus @default(ACTIVE)
+  notes       String?
+  createdAt   DateTime          @default(now())
+  updatedAt   DateTime          @updatedAt
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+}
+
+model FuelLog {
+  id        String   @id @default(cuid())
+  liters    Float
+  cost      Float
+  date      DateTime @default(now())
+  createdAt DateTime @default(now())
+
+  vehicleId String
+  vehicle   Vehicle @relation(fields: [vehicleId], references: [id])
+  tripId    String?
+  trip      Trip?   @relation(fields: [tripId], references: [id])
+}
+
+model Expense {
+  id        String          @id @default(cuid())
+  category  ExpenseCategory
+  amount    Float
+  date      DateTime        @default(now())
+  note      String?
+  createdAt DateTime        @default(now())
+
+  vehicleId String?
+  vehicle   Vehicle? @relation(fields: [vehicleId], references: [id])
+  tripId    String?
+  trip      Trip?   @relation(fields: [tripId], references: [id])
+}
+
+model Setting {
+  key   String @id
+  value String
+}
