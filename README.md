@@ -1,137 +1,105 @@
-# 🚛 TransitOps
-
 <div align="center">
 
-### Intelligent Fleet & Transport Operations Platform
+# 🚛 TransitOps
 
-**Built for the Odoo Hackathon 2026**
+### Smart Fleet Management. Intelligent Dispatch. Real-Time Analytics.
 
-Manage Vehicles • Dispatch Trips • Monitor Drivers • Track Maintenance • Analyze Fleet Performance
+<p align="center">
+A next-generation Fleet Operations Platform built for the <b>Odoo Hackathon 2026</b>, designed to streamline logistics through intelligent automation, role-based workflows, and data-driven insights.
+</p>
 
-![React](https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react)
-![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js)
-![Prisma](https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma)
-![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite)
-![JWT](https://img.shields.io/badge/JWT-Authentication-black?style=for-the-badge)
-![TailwindCSS](https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss)
+<p align="center">
+
+<img src="https://img.shields.io/badge/React-19-61DAFB?style=for-the-badge&logo=react"/>
+<img src="https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js"/>
+<img src="https://img.shields.io/badge/Prisma-ORM-2D3748?style=for-the-badge&logo=prisma"/>
+<img src="https://img.shields.io/badge/SQLite-Database-003B57?style=for-the-badge&logo=sqlite"/>
+<img src="https://img.shields.io/badge/TailwindCSS-38BDF8?style=for-the-badge&logo=tailwindcss"/>
+<img src="https://img.shields.io/badge/Odoo-Hackathon-714B67?style=for-the-badge"/>
+
+</p>
+
+<p>
+
+⭐ Intelligent Dispatch Engine
+
+⭐ Fleet Analytics
+
+⭐ Automated Business Rules
+
+⭐ Production Ready Architecture
+
+</p>
 
 </div>
 
 ---
 
-# 📖 Overview
+# 🌍 The Problem
 
-TransitOps is a modern Fleet & Transport Management Platform built to digitize the complete transportation lifecycle.
+Modern logistics companies still rely on spreadsheets and manual coordination for managing fleets, drivers, maintenance schedules, and dispatch operations.
 
-Instead of managing logistics through spreadsheets and manual coordination, TransitOps automates every critical fleet operation—from vehicle registration and driver management to intelligent trip dispatching, maintenance scheduling, fuel tracking, operational cost monitoring, and real-time fleet analytics.
+This leads to:
 
-The platform enforces business rules automatically, ensuring safer operations, eliminating human errors, and improving fleet efficiency.
+❌ Double-booked vehicles
 
----
+❌ Expired-license drivers on trips
 
-# ✨ Key Highlights
+❌ Overloaded cargo
 
-✅ Smart Trip Dispatch Engine
+❌ Missed maintenance
 
-✅ Automatic Vehicle & Driver Status Synchronization
+❌ High operational costs
 
-✅ Role Based Access Control (RBAC)
+❌ No centralized analytics
 
-✅ Fleet Performance Dashboard
-
-✅ Fuel & Expense Tracking
-
-✅ Maintenance Lifecycle Management
-
-✅ Driver License Validation
-
-✅ Cargo Capacity Validation
-
-✅ Fleet ROI Analytics
-
-✅ CSV Report Export
+TransitOps transforms these disconnected workflows into a unified, intelligent fleet management platform.
 
 ---
 
-# 🚀 Features
+# ✨ Why TransitOps?
 
-## 🚚 Fleet Management
+Unlike a traditional CRUD application, TransitOps enforces **real business logic**.
 
-- Vehicle Registry
-- Driver Registry
-- Vehicle Status Tracking
-- Driver Availability
-- Vehicle Capacity Management
-- License Expiry Monitoring
+Every action is validated before execution, ensuring operational safety, resource optimization, and complete fleet visibility.
 
 ---
 
-## 🗺️ Trip Management
+# 🎯 Key Features
 
-- Create Trips
-- Dispatch Trips
-- Complete Trips
-- Cancel Trips
-- Auto Status Updates
-- Distance Tracking
-- Revenue Tracking
-
----
-
-## 🔒 Intelligent Business Rules
-
-TransitOps automatically prevents:
-
-❌ Overloaded Vehicles
-
-❌ Expired Driver Licenses
-
-❌ Suspended Drivers
-
-❌ Double Vehicle Assignment
-
-❌ Double Driver Assignment
-
-❌ Retired Vehicle Dispatch
-
-❌ Vehicles Under Maintenance
+| 🚛 Fleet | 🚦 Dispatch | 📊 Analytics |
+|----------|------------|-------------|
+| Vehicle Registry | Smart Trip Dispatch | Fleet Utilization |
+| Driver Registry | Auto Status Updates | Vehicle ROI |
+| Maintenance Logs | Cargo Validation | Fuel Efficiency |
+| Fuel Tracking | Driver Validation | Revenue Insights |
+| Expense Tracking | Lifecycle Management | CSV Export |
 
 ---
 
-## 🔧 Maintenance
+# 🧠 Intelligent Business Rules
 
-- Schedule Maintenance
-- Vehicle Service Logs
-- Repair Cost Tracking
-- Automatic In-Shop Status
-- Maintenance History
+TransitOps automatically blocks:
 
----
+🟥 Assigning vehicles already on a trip
 
-## ⛽ Fuel & Expense Management
+🟥 Dispatching vehicles under maintenance
 
-- Fuel Logs
-- Operational Expenses
-- Cost Reports
-- Vehicle-wise Expense Tracking
+🟥 Dispatching retired vehicles
 
----
+🟥 Assigning suspended drivers
 
-## 📊 Analytics Dashboard
+🟥 Assigning drivers with expired licenses
 
-Real-time KPIs including
+🟥 Cargo exceeding vehicle capacity
 
-- Fleet Utilization
-- Active Trips
-- Available Vehicles
-- Fuel Efficiency
-- Operational Cost
-- Vehicle ROI
-- Revenue Analytics
+🟥 Duplicate vehicle registration
+
+Every workflow is validated before execution.
 
 ---
 
-# 🔄 Workflow
+# ⚙️ System Workflow
 
 ```text
 Vehicle Registration
@@ -140,13 +108,13 @@ Vehicle Registration
 Driver Registration
         │
         ▼
-Create Trip
+Trip Creation
         │
         ▼
-Validate Business Rules
+Business Rule Validation
         │
         ▼
-Dispatch Trip
+Trip Dispatch
         │
         ▼
 Vehicle → On Trip
@@ -154,171 +122,180 @@ Vehicle → On Trip
 Driver → On Trip
         │
         ▼
-Complete Trip
+Trip Completion
         │
         ▼
 Vehicle → Available
 
 Driver → Available
+        │
+        ▼
+Analytics Updated
 ```
 
 ---
 
-# 🏗️ Tech Stack
+# 🏗️ Architecture
 
-### Frontend
+```text
+                    React + Tailwind
+                           │
+                           │
+                    REST API (Express)
+                           │
+              ┌────────────┼────────────┐
+              │            │            │
+          Authentication  Fleet      Analytics
+              │         Operations      │
+              └────────────┼────────────┘
+                       Prisma ORM
+                           │
+                        SQLite DB
+```
 
-- React
-- Vite
-- TailwindCSS
-- Axios
-- React Router
+---
 
-### Backend
+# 📸 Screenshots
 
-- Node.js
-- Express.js
-- Prisma ORM
-- JWT Authentication
-- Zod Validation
+> Add your screenshots here
 
-### Database
+| Dashboard | Fleet |
+|-----------|-------|
+| ![](screenshots/dashboard.png) | ![](screenshots/fleet.png) |
 
-- SQLite
+| Dispatcher | Analytics |
+|-------------|-----------|
+| ![](screenshots/trips.png) | ![](screenshots/analytics.png) |
+
+---
+
+# 📈 Dashboard
+
+✔ Fleet Utilization
+
+✔ Active Trips
+
+✔ Vehicle Status
+
+✔ Driver Availability
+
+✔ Fuel Efficiency
+
+✔ Revenue Analytics
+
+✔ ROI
+
+✔ Operational Cost
+
+---
+
+# 🛠 Tech Stack
+
+| Layer | Technology |
+|--------|------------|
+| Frontend | React, Vite, Tailwind CSS |
+| Backend | Node.js, Express |
+| ORM | Prisma |
+| Database | SQLite |
+| Authentication | JWT |
+| Validation | Zod |
+
+---
+
+# 🚀 Quick Start
+
+## Clone
+
+```bash
+git clone https://github.com/<your-username>/TransitOps.git
+```
+
+## Backend
+
+```bash
+cd server
+npm install
+npm run db:migrate
+npm run db:seed
+npm run dev
+```
+
+## Frontend
+
+```bash
+cd client
+npm install
+npm run dev
+```
 
 ---
 
 # 📂 Project Structure
 
-```
+```text
 TransitOps
 │
 ├── client
-│   ├── src
-│   ├── public
-│   └── package.json
+│   ├── components
+│   ├── pages
+│   ├── hooks
+│   └── services
 │
 ├── server
+│   ├── auth
+│   ├── middleware
+│   ├── modules
 │   ├── prisma
-│   ├── src
-│   │   ├── auth
-│   │   ├── middleware
-│   │   ├── modules
-│   │   ├── routes
-│   │   └── utils
-│   └── package.json
+│   └── utils
 │
 └── README.md
 ```
 
 ---
 
-# 🔐 User Roles
+# 👥 Team
 
-| Role | Permissions |
-|-------|------------|
-| Fleet Manager | Fleet Operations |
-| Dispatcher | Dispatch Trips |
-| Safety Officer | Driver Safety & Compliance |
-| Financial Analyst | Fuel, Expenses & Analytics |
+<div align="center">
 
----
+| Name | Responsibility |
+|------|----------------|
+| 👨‍💻 Aman Jaiswal | Analytics • Integration • Backend |
+| 👨‍💻 Ayush Awasthi | Frontend • UI/UX |
+| 👨‍💻 Neel Lapsiwala | Backend • Authentication |
+| 👨‍💻 Rohit Prajapat | Fleet Logic • Dispatch Engine |
 
-# 📈 Analytics
-
-TransitOps automatically calculates
-
-- Fleet Utilization
-- Vehicle ROI
-- Operational Cost
-- Fuel Efficiency
-- Revenue
-- Maintenance Cost
-- Active Fleet Ratio
+</div>
 
 ---
 
-# ⚙️ Getting Started
+# 💡 Highlights
 
-## Clone Repository
+✅ Clean Architecture
 
-```bash
-git clone https://github.com/YOUR_USERNAME/TransitOps.git
-```
+✅ Modular Codebase
 
----
+✅ Production Ready
 
-## Backend
+✅ Responsive UI
 
-```bash
-cd server
+✅ RBAC
 
-npm install
+✅ Real-Time Status Synchronization
 
-npm run db:migrate
+✅ Intelligent Validation
 
-npm run db:seed
+✅ Fleet Analytics
 
-npm run dev
-```
-
----
-
-## Frontend
-
-```bash
-cd client
-
-npm install
-
-npm run dev
-```
-
----
-
-# 🎯 Why TransitOps?
-
-Traditional fleet management relies on spreadsheets and manual coordination, leading to:
-
-- Resource conflicts
-- Dispatch errors
-- Vehicle misuse
-- Increased operational costs
-- Missed maintenance
-- Low visibility into fleet performance
-
-TransitOps solves these challenges through automation, validation, and real-time insights.
-
----
-
-# 🌟 Built For
-
-**Odoo Hackathon 2026**
-
-Designed to demonstrate:
-
-- Clean Architecture
-- Scalable Backend
-- Modern Frontend
-- Business Rule Automation
-- Production Ready Code
-- Excellent User Experience
-
----
-
-# 👨‍💻 Team
-
-- Aman Jaiswal
-- Ayush Awasthi
-- Neel Lapsiwala
-- Rohit Prajapat
+✅ Easy to Scale
 
 ---
 
 <div align="center">
 
-## ⭐ If you like this project, consider giving it a Star!
+# ⭐ Built with passion for Odoo Hackathon 2026
 
-Made with ❤️ for Odoo Hackathon 2026
+### "Automating Logistics. Empowering Fleet Operations."
+
+If you like this project, don't forget to ⭐ the repository.
 
 </div>
