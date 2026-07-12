@@ -5,7 +5,7 @@
 ### Smart Fleet Management. Intelligent Dispatch. Real-Time Analytics.
 
 <p align="center">
-A next-generation Fleet Operations Platform built for the <b>Odoo Hackathon 2026</b>, designed to streamline logistics through intelligent automation, role-based workflows, and data-driven insights.
+A Fleet Operations Platform built for the <b>Odoo Hackathon 2026</b> — streamlining logistics through automation, role-based workflows, and data-driven insights.
 </p>
 
 <p align="center">
@@ -19,49 +19,23 @@ A next-generation Fleet Operations Platform built for the <b>Odoo Hackathon 2026
 
 </p>
 
-<p>
-
-⭐ Intelligent Dispatch Engine
-
-⭐ Fleet Analytics
-
-⭐ Automated Business Rules
-
-⭐ Production Ready Architecture
-
-</p>
-
 </div>
 
 ---
 
 # 🌍 The Problem
 
-Modern logistics companies still rely on spreadsheets and manual coordination for managing fleets, drivers, maintenance schedules, and dispatch operations.
+Most logistics companies still run their fleets off spreadsheets and manual coordination — managing vehicles, drivers, maintenance schedules, and dispatch by hand.
 
-This leads to:
+That usually leads to double-booked vehicles, drivers going out with expired licenses, overloaded cargo, missed maintenance, and no real visibility into what's actually happening across the fleet.
 
-❌ Double-booked vehicles
-
-❌ Expired-license drivers on trips
-
-❌ Overloaded cargo
-
-❌ Missed maintenance
-
-❌ High operational costs
-
-❌ No centralized analytics
-
-TransitOps transforms these disconnected workflows into a unified, intelligent fleet management platform.
+TransitOps brings all of this into one platform instead of leaving it scattered across sheets and side conversations.
 
 ---
 
 # ✨ Why TransitOps?
 
-Unlike a traditional CRUD application, TransitOps enforces **real business logic**.
-
-Every action is validated before execution, ensuring operational safety, resource optimization, and complete fleet visibility.
+It's not just another CRUD app — TransitOps actually enforces business logic. Every action gets validated before it goes through, so you're not relying on someone remembering the rules.
 
 ---
 
@@ -77,25 +51,19 @@ Every action is validated before execution, ensuring operational safety, resourc
 
 ---
 
-# 🧠 Intelligent Business Rules
+# 🧠 Business Rules It Enforces
 
 TransitOps automatically blocks:
 
-🟥 Assigning vehicles already on a trip
+- Assigning vehicles already on a trip
+- Dispatching vehicles under maintenance
+- Dispatching retired vehicles
+- Assigning suspended drivers
+- Assigning drivers with expired licenses
+- Cargo exceeding vehicle capacity
+- Duplicate vehicle registration
 
-🟥 Dispatching vehicles under maintenance
-
-🟥 Dispatching retired vehicles
-
-🟥 Assigning suspended drivers
-
-🟥 Assigning drivers with expired licenses
-
-🟥 Cargo exceeding vehicle capacity
-
-🟥 Duplicate vehicle registration
-
-Every workflow is validated before execution.
+Every workflow gets validated before it's executed — this was the part we focused on most.
 
 ---
 
@@ -118,7 +86,6 @@ Trip Dispatch
         │
         ▼
 Vehicle → On Trip
-
 Driver → On Trip
         │
         ▼
@@ -126,7 +93,6 @@ Trip Completion
         │
         ▼
 Vehicle → Available
-
 Driver → Available
         │
         ▼
@@ -139,7 +105,6 @@ Analytics Updated
 
 ```text
                     React + Tailwind
-                           │
                            │
                     REST API (Express)
                            │
@@ -171,21 +136,7 @@ Analytics Updated
 
 # 📈 Dashboard
 
-✔ Fleet Utilization
-
-✔ Active Trips
-
-✔ Vehicle Status
-
-✔ Driver Availability
-
-✔ Fuel Efficiency
-
-✔ Revenue Analytics
-
-✔ ROI
-
-✔ Operational Cost
+Fleet utilization, active trips, vehicle status, driver availability, fuel efficiency, revenue analytics, ROI, and operational cost — all in one view.
 
 ---
 
@@ -268,34 +219,12 @@ TransitOps
 
 ---
 
-# 💡 Highlights
-
-✅ Clean Architecture
-
-✅ Modular Codebase
-
-✅ Production Ready
-
-✅ Responsive UI
-
-✅ RBAC
-
-✅ Real-Time Status Synchronization
-
-✅ Intelligent Validation
-
-✅ Fleet Analytics
-
-✅ Easy to Scale
-
----
-
 <div align="center">
 
-# ⭐ Built with passion for Odoo Hackathon 2026
+# ⭐ Built for Odoo Hackathon 2026
 
 ### "Automating Logistics. Empowering Fleet Operations."
 
-If you like this project, don't forget to ⭐ the repository.
+If you like this project, feel free to ⭐ the repository.
 
 </div>
