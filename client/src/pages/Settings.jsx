@@ -54,8 +54,8 @@ export default function Settings() {
       <PageHeader title="Settings & RBAC" subtitle="Organization configuration and access control" />
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
-          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">General</h2>
+        <Card className="p-6 bg-[var(--surface)] shadow-sm">
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--muted-foreground)]">General</h2>
           <div className="space-y-4">
             <Field label="Depot Name"><Input value={general.depotName} onChange={set('depotName')} disabled={!editable} /></Field>
             <Field label="Currency"><Input value={general.currency} onChange={set('currency')} disabled={!editable} /></Field>
@@ -69,24 +69,24 @@ export default function Settings() {
           </div>
         </Card>
 
-        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
-          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Role-Based Access (RBAC)</h2>
+        <Card className="p-6 bg-[var(--surface)] shadow-sm">
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--muted-foreground)]">Role-Based Access (RBAC)</h2>
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-slate-500">
+                <tr className="text-left text-xs uppercase tracking-wide text-[var(--muted-foreground)]">
                   <th className="py-2 pr-4 font-medium">Role</th>
                   {RBAC_COLUMNS.map(([, label]) => <th key={label} className="px-2 py-2 text-center font-medium">{label}</th>)}
                 </tr>
               </thead>
               <tbody>
                 {data.rbac.map(({ role, permissions }) => (
-                  <tr key={role} className="border-t border-ink-800/70">
-                    <td className="py-2.5 pr-4 font-medium text-slate-200">{ROLE_LABELS[role]}</td>
+                  <tr key={role} className="border-t border-[var(--border)]/60 hover:bg-[var(--surface-muted)]">
+                    <td className="py-2.5 pr-4 font-medium text-[var(--foreground)]">{ROLE_LABELS[role]}</td>
                     {RBAC_COLUMNS.map(([mod]) => {
                       const val = cell(permissions[mod]);
                       return (
-                        <td key={mod} className={`px-2 py-2.5 text-center ${val === '✓' ? 'font-semibold text-status-available' : val === 'View' ? 'text-status-ontrip' : 'text-slate-600'}`}>
+                        <td key={mod} className={`px-2 py-2.5 text-center ${val === '✓' ? 'font-semibold text-status-available' : val === 'View' ? 'text-status-ontrip' : 'text-[var(--muted-foreground)]'}`}>
                           {val}
                         </td>
                       );
@@ -96,7 +96,7 @@ export default function Settings() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 text-xs text-slate-500">Access is enforced server-side on every request and mirrored in the UI.</p>
+          <p className="mt-3 text-xs text-[var(--muted-foreground)]">Access is enforced server-side on every request and mirrored in the UI.</p>
         </Card>
       </div>
     </>

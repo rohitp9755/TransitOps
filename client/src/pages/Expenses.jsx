@@ -35,8 +35,8 @@ export default function Expenses() {
       </PageHeader>
 
       <div className="space-y-4">
-        <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
-          <div className="border-b border-ink-800 px-5 py-4 bg-ink-900/90"><h2 className="text-sm font-semibold text-slate-200">Fuel Logs</h2></div>
+        <Card className="bg-[var(--surface)] shadow-sm">
+          <div className="border-b border-[var(--border)] px-5 py-4 bg-[var(--surface-muted)]"><h2 className="text-sm font-semibold text-[var(--foreground)]">Fuel Logs</h2></div>
           <SimpleTable
             state={fuel}
             columns={['Vehicle', 'Date', 'Litres', 'Cost']}
@@ -44,8 +44,8 @@ export default function Expenses() {
           />
         </Card>
 
-        <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
-          <div className="border-b border-ink-800 px-5 py-4 bg-ink-900/90"><h2 className="text-sm font-semibold text-slate-200">Other Expenses (Toll / Misc)</h2></div>
+        <Card className="bg-[var(--surface)] shadow-sm">
+          <div className="border-b border-[var(--border)] px-5 py-4 bg-[var(--surface-muted)]"><h2 className="text-sm font-semibold text-[var(--foreground)]">Other Expenses (Toll / Misc)</h2></div>
           <SimpleTable
             state={expenses}
             columns={['Category', 'Vehicle', 'Trip', 'Amount']}
@@ -53,13 +53,13 @@ export default function Expenses() {
           />
         </Card>
 
-        <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+        <Card className="p-6 bg-[var(--surface)] shadow-sm">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="text-sm font-semibold text-slate-200">Total Operational Cost</p>
-              <p className="text-xs text-slate-500">Auto = Fuel + Maintenance across the fleet</p>
+              <p className="text-sm font-semibold text-[var(--foreground)]">Total Operational Cost</p>
+              <p className="text-xs text-[var(--muted-foreground)]">Auto = Fuel + Maintenance across the fleet</p>
             </div>
-            <p className="text-2xl font-bold text-primary">
+            <p className="text-2xl font-bold text-[var(--primary)]">
               {summary.loading ? '…' : `₹${currency(summary.data?.total)}`}
             </p>
           </div>
@@ -83,16 +83,16 @@ function SimpleTable({ state, columns, row }) {
     <div className="overflow-x-auto">
       <table className="w-full text-sm">
         <thead>
-          <tr className="text-left text-xs uppercase tracking-wide text-slate-500">
+          <tr className="text-left text-xs uppercase tracking-wide text-[var(--muted-foreground)]">
             {columns.map((c) => <th key={c} className="px-5 py-2.5 font-medium">{c}</th>)}
           </tr>
         </thead>
         <tbody>
-          {state.data.length === 0 && <tr><td colSpan={columns.length} className="px-5 py-6 text-center text-slate-500">No records</td></tr>}
+          {state.data.length === 0 && <tr><td colSpan={columns.length} className="px-5 py-6 text-center text-[var(--muted-foreground)]">No records</td></tr>}
           {state.data.map((item) => (
-            <tr key={item.id} className="border-t border-ink-800/70">
+            <tr key={item.id} className="border-t border-[var(--border)]/60 hover:bg-[var(--surface-muted)]">
               {row(item).map((cell, i) => (
-                <td key={i} className={`px-5 py-3 ${i === 0 ? 'font-medium text-slate-200' : 'text-slate-400'}`}>{cell}</td>
+                <td key={i} className={`px-5 py-3 ${i === 0 ? 'font-medium text-[var(--foreground)]' : 'text-[var(--muted-foreground)]'}`}>{cell}</td>
               ))}
             </tr>
           ))}
@@ -120,7 +120,7 @@ function FuelModal({ vehicles, onClose, onSaved }) {
   return (
     <Modal open onClose={onClose} title="Log Fuel"
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={save} disabled={saving || !form.vehicleId}>{saving ? 'Saving…' : 'Save'}</Button></>}>
-      {error && <div className="mb-4 rounded-lg border border-status-retired/40 bg-status-retired/10 px-3 py-2 text-sm text-status-retired">{error}</div>}
+      {error && <div className="mb-4 rounded-2xl border border-[var(--destructive)]/30 bg-[var(--destructive)]/10 px-3 py-2 text-sm text-[var(--destructive)]">{error}</div>}
       <div className="space-y-4">
         <Field label="Vehicle">
           <Select value={form.vehicleId} onChange={set('vehicleId')}>
@@ -155,7 +155,7 @@ function ExpenseModal({ vehicles, onClose, onSaved }) {
   return (
     <Modal open onClose={onClose} title="Add Expense"
       footer={<><Button variant="secondary" onClick={onClose}>Cancel</Button><Button onClick={save} disabled={saving || !form.amount}>{saving ? 'Saving…' : 'Save'}</Button></>}>
-      {error && <div className="mb-4 rounded-lg border border-status-retired/40 bg-status-retired/10 px-3 py-2 text-sm text-status-retired">{error}</div>}
+      {error && <div className="mb-4 rounded-2xl border border-[var(--destructive)]/30 bg-[var(--destructive)]/10 px-3 py-2 text-sm text-[var(--destructive)]">{error}</div>}
       <div className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <Field label="Category">

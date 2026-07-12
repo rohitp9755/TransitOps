@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Eye, EyeOff } from 'lucide-react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext.jsx';
 import { Button, Field, Input } from '../components/ui.jsx';
@@ -18,6 +19,7 @@ export default function Login() {
   const [password, setPassword] = useState('password123');
   const [error, setError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   async function onSubmit(e) {
     e.preventDefault();
@@ -62,15 +64,16 @@ export default function Login() {
       </div>
 
       {/* Form panel */}
-      <div className="flex items-center justify-center bg-ink-950 p-8">
-        <form onSubmit={onSubmit} className="w-full max-w-sm space-y-5">
+      <div className="flex items-center justify-center bg-[var(--background)] p-8">
+        <form onSubmit={onSubmit} className="w-full max-w-md space-y-6 rounded-[1.75rem] border border-[var(--border)] bg-[var(--surface)] p-8 shadow-soft">
           <div>
-            <h2 className="text-2xl font-semibold text-slate-100">Sign in to your account</h2>
-            <p className="mt-1 text-sm text-slate-500">Enter your credentials to continue</p>
+            <p className="text-xs font-semibold uppercase tracking-[0.3em] text-[var(--muted-foreground)]">Welcome back</p>
+            <h2 className="mt-3 text-3xl font-semibold text-[var(--foreground)]">Sign in to TransitOps</h2>
+            <p className="mt-2 text-sm text-[var(--muted-foreground)]">Use your credentials to access operations, fleet, and analytics.</p>
           </div>
 
           {error && (
-            <div className="rounded-lg border border-status-retired/40 bg-status-retired/10 px-3 py-2 text-sm text-status-retired">
+            <div className="rounded-2xl border border-[var(--destructive)]/30 bg-[var(--destructive)]/10 px-4 py-3 text-sm text-[var(--destructive)]">
               {error}
             </div>
           )}
@@ -79,15 +82,31 @@ export default function Login() {
             <Input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
           </Field>
           <Field label="Password">
-            <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} required autoComplete="current-password" />
+            <div className="relative">
+              <Input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword((value) => !value)}
+                className="absolute inset-y-0 right-3 grid place-items-center text-[var(--muted-foreground)]"
+                aria-label={showPassword ? 'Hide password' : 'Show password'}
+              >
+                {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+              </button>
+            </div>
           </Field>
 
           <Button type="submit" className="w-full" disabled={submitting}>
             {submitting ? 'Signing in…' : 'Sign In'}
           </Button>
 
-          <p className="text-center text-xs text-slate-600">
-            Demo accounts use password <span className="font-mono text-slate-400">password123</span>
+          <p className="text-center text-xs text-[var(--muted-foreground)]">
+            Demo accounts use password <span className="font-mono text-[var(--foreground)]">password123</span>
           </p>
         </form>
       </div>

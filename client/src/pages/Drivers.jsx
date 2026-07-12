@@ -36,7 +36,7 @@ export default function Drivers() {
           <div className="overflow-x-auto">
             <table className="w-full text-sm">
               <thead>
-                <tr className="text-left text-xs uppercase tracking-wide text-slate-500">
+                <tr className="text-left text-xs uppercase tracking-wide text-[var(--muted-foreground)]">
                   <th className="px-5 py-3 font-medium">Driver</th>
                   <th className="px-5 py-3 font-medium">License No.</th>
                   <th className="px-5 py-3 font-medium">Category</th>
@@ -48,17 +48,17 @@ export default function Drivers() {
               </thead>
               <tbody>
                 {data.map((d) => (
-                  <tr key={d.id} className="border-t border-ink-800/70 hover:bg-ink-950/60">
-                    <td className="px-5 py-4 font-medium text-slate-200">{d.name}</td>
-                    <td className="px-5 py-3 text-slate-400">{d.licenseNumber}</td>
-                    <td className="px-5 py-3 text-slate-400">{d.licenseCategory}</td>
+                  <tr key={d.id} className="border-t border-[var(--border)]/60 hover:bg-[var(--surface-muted)]">
+                    <td className="px-5 py-4 font-medium text-[var(--foreground)]">{d.name}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{d.licenseNumber}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{d.licenseCategory}</td>
                     <td className="px-5 py-3">
-                      <span className={d.licenseExpired ? 'font-medium text-status-retired' : 'text-slate-400'}>
+                      <span className={d.licenseExpired ? 'font-medium text-[var(--destructive)]' : 'text-[var(--muted-foreground)]'}>
                         {fmtDate(d.licenseExpiry)}{d.licenseExpired && ' · Expired'}
                       </span>
                     </td>
-                    <td className="px-5 py-3 text-slate-400">{d.contact}</td>
-                    <td className="px-5 py-3 text-slate-300">{d.safetyScore}%</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{d.contact}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{d.safetyScore}%</td>
                     <td className="px-5 py-3"><Badge status={d.status} /></td>
                   </tr>
                 ))}
@@ -68,7 +68,7 @@ export default function Drivers() {
         )}
       </Card>
 
-      <p className="mt-3 text-xs text-primary/80">
+      <p className="mt-3 text-xs text-[var(--muted-foreground)]">
         Drivers with expired licenses or Suspended status are blocked from trip assignment.
       </p>
 

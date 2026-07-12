@@ -78,7 +78,7 @@ export default function Trips() {
       <PageHeader title="Trip Dispatcher" subtitle="Create, validate, and track trips end to end" />
 
       {error && (
-        <div className="mb-4 rounded-lg border border-status-retired/40 bg-status-retired/10 px-4 py-2.5 text-sm text-status-retired">
+        <div className="mb-4 rounded-2xl border border-[var(--destructive)]/30 bg-[var(--destructive)]/10 px-4 py-2.5 text-sm text-[var(--destructive)]">
           {error}
         </div>
       )}
@@ -86,9 +86,9 @@ export default function Trips() {
       <div className="grid gap-4 lg:grid-cols-2">
         {/* Create trip */}
         {editable && (
-          <Card className="p-6 bg-ink-900/95 shadow-sm shadow-black/20">
+          <Card className="p-6 bg-[var(--surface)] shadow-sm">
             <Stepper current="DRAFT" />
-            <h2 className="mb-5 mt-6 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Create Trip</h2>
+            <h2 className="mb-5 mt-6 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--muted-foreground)]">Create Trip</h2>
             <div className="space-y-5">
               <div className="grid grid-cols-2 gap-3">
                 <Field label="Source"><Input value={form.source} onChange={set('source')} placeholder="Gandhinagar Depot" /></Field>
@@ -116,10 +116,10 @@ export default function Trips() {
 
               {/* Live validation panel */}
               {selectedVehicle && (
-                <div className={`rounded-lg border px-4 py-3 text-sm ${overCapacity ? 'border-status-retired/40 bg-status-retired/10' : 'border-status-available/40 bg-status-available/10'}`}>
-                  <p className="text-slate-300">Vehicle capacity: <span className="font-semibold">{capacity} kg</span></p>
-                  <p className="text-slate-300">Cargo weight: <span className="font-semibold">{cargo} kg</span></p>
-                  <p className={`mt-1 font-medium ${overCapacity ? 'text-status-retired' : 'text-status-available'}`}>
+                <div className={`rounded-2xl border px-4 py-3 text-sm ${overCapacity ? 'border-[var(--destructive)]/40 bg-[var(--destructive)]/10' : 'border-[var(--success)]/40 bg-[var(--success)]/10'}`}>
+                  <p className="text-[var(--muted-foreground)]">Vehicle capacity: <span className="font-semibold text-[var(--foreground)]">{capacity} kg</span></p>
+                  <p className="text-[var(--muted-foreground)]">Cargo weight: <span className="font-semibold text-[var(--foreground)]">{cargo} kg</span></p>
+                  <p className={`mt-1 font-medium ${overCapacity ? 'text-[var(--destructive)]' : 'text-[var(--success)]'}`}>
                     {overCapacity
                       ? `✕ Capacity exceeded by ${cargo - capacity} kg — dispatch blocked`
                       : '✓ Within capacity — ready to dispatch'}
@@ -140,24 +140,24 @@ export default function Trips() {
         )}
 
         {/* Live board */}
-        <Card className={`p-6 bg-ink-900/95 shadow-sm shadow-black/20 ${editable ? '' : 'lg:col-span-2'}`}>
-          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-slate-400">Live Board</h2>
+        <Card className={`p-6 bg-[var(--surface)] shadow-sm ${editable ? '' : 'lg:col-span-2'}`}>
+          <h2 className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-[var(--muted-foreground)]">Live Board</h2>
           {board.loading ? (
             <Spinner />
           ) : board.error ? (
             <ErrorState message={board.error} onRetry={board.refetch} />
           ) : board.data.length === 0 ? (
-            <p className="py-10 text-center text-sm text-slate-500">No trips yet. Create one to get started.</p>
+            <p className="py-10 text-center text-sm text-[var(--muted-foreground)]">No trips yet. Create one to get started.</p>
           ) : (
             <div className="space-y-3">
               {board.data.map((t) => (
-                <div key={t.id} className="rounded-[1.5rem] border border-ink-800 bg-ink-950/70 p-5 shadow-[0_20px_45px_rgba(0,0,0,0.12)]">
+                <div key={t.id} className="rounded-[1.5rem] border border-[var(--border)] bg-[var(--surface-muted)] p-5 shadow-soft">
                   <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
-                      <p className="text-sm font-semibold text-slate-200">{t.code}</p>
-                      <p className="text-xs text-slate-400">{t.source} → {t.destination}</p>
+                      <p className="text-sm font-semibold text-[var(--foreground)]">{t.code}</p>
+                      <p className="text-xs text-[var(--muted-foreground)]">{t.source} → {t.destination}</p>
                     </div>
-                    <div className="text-right text-xs text-slate-500">
+                    <div className="text-right text-xs text-[var(--muted-foreground)]">
                       <p>{t.vehicle?.regNumber ?? '—'} / {t.driver?.name ?? '—'}</p>
                       <p>{t.cargoWeightKg} kg · {t.plannedDistanceKm} km</p>
                     </div>
@@ -200,9 +200,9 @@ function Stepper({ current }) {
     <div className="flex items-center gap-2">
       {LIFECYCLE.map((step, i) => (
         <div key={step} className="flex items-center gap-2">
-          <span className={`h-2.5 w-2.5 rounded-full ${i <= idx ? 'bg-primary' : 'bg-ink-700'}`} />
-          <span className={`text-xs ${i <= idx ? 'text-slate-300' : 'text-slate-600'}`}>{step[0] + step.slice(1).toLowerCase()}</span>
-          {i < LIFECYCLE.length - 1 && <span className="h-px w-5 bg-ink-700" />}
+          <span className={`h-2.5 w-2.5 rounded-full ${i <= idx ? 'bg-[var(--primary)]' : 'bg-[var(--surface-muted)]'}`} />
+          <span className={`text-xs ${i <= idx ? 'text-[var(--muted-foreground)]' : 'text-[var(--muted-foreground)]'}`}>{step[0] + step.slice(1).toLowerCase()}</span>
+          {i < LIFECYCLE.length - 1 && <span className="h-px w-5 bg-[var(--surface-muted)]" />}
         </div>
       ))}
     </div>

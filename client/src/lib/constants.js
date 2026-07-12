@@ -27,14 +27,14 @@ export const STATUS_STYLES = {
 
 // Sidebar entries. `module` maps to the RBAC permission that gates visibility.
 export const NAV_ITEMS = [
-  { to: '/', label: 'Dashboard', module: 'dashboard' },
-  { to: '/fleet', label: 'Fleet', module: 'fleet' },
-  { to: '/drivers', label: 'Drivers', module: 'drivers' },
-  { to: '/trips', label: 'Trips', module: 'trips' },
-  { to: '/maintenance', label: 'Maintenance', module: 'maintenance' },
-  { to: '/expenses', label: 'Fuel & Expenses', module: 'expenses' },
-  { to: '/analytics', label: 'Analytics', module: 'analytics' },
-  { to: '/settings', label: 'Settings', module: 'settings' },
+  { to: '/', label: 'Dashboard', module: 'dashboard', section: 'Overview' },
+  { to: '/analytics', label: 'Analytics', module: 'analytics', section: 'Overview' },
+  { to: '/fleet', label: 'Vehicle Registry', module: 'fleet', section: 'Fleet' },
+  { to: '/maintenance', label: 'Maintenance', module: 'maintenance', section: 'Fleet' },
+  { to: '/trips', label: 'Trips', module: 'trips', section: 'Operations' },
+  { to: '/drivers', label: 'Drivers', module: 'drivers', section: 'Operations' },
+  { to: '/expenses', label: 'Fuel & Expenses', module: 'expenses', section: 'Finance' },
+  { to: '/settings', label: 'Settings', module: 'settings', section: 'System' },
 ];
 
 export const currency = (n) =>

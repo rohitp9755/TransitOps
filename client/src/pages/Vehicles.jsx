@@ -55,7 +55,7 @@ export default function Vehicles() {
         </Select>
       </div>
 
-      <Card className="bg-ink-900/95 shadow-sm shadow-black/20">
+      <Card className="bg-[var(--surface)] shadow-sm shadow-soft">
         {loading ? (
           <Spinner />
         ) : error ? (
@@ -66,7 +66,7 @@ export default function Vehicles() {
           <div className="overflow-x-auto">
             <table className="min-w-full text-sm">
               <thead>
-                <tr className="bg-ink-900 text-left text-xs uppercase tracking-wide text-slate-500">
+                <tr className="text-left text-xs uppercase tracking-wide text-[var(--muted-foreground)]">
                   <th className="px-5 py-3 font-medium">Reg No.</th>
                   <th className="px-5 py-3 font-medium">Name / Model</th>
                   <th className="px-5 py-3 font-medium">Type</th>
@@ -79,13 +79,13 @@ export default function Vehicles() {
               </thead>
               <tbody>
                 {data.map((v) => (
-                  <tr key={v.id} className="border-t border-ink-800/70 hover:bg-ink-950/60">
-                    <td className="px-5 py-4 font-medium text-slate-200">{v.regNumber}</td>
-                    <td className="px-5 py-3 text-slate-300">{v.name}</td>
-                    <td className="px-5 py-3 text-slate-400">{v.type}</td>
-                    <td className="px-5 py-3 text-slate-400">{currency(v.maxLoadKg)} kg</td>
-                    <td className="px-5 py-3 text-slate-400">{currency(v.odometer)}</td>
-                    <td className="px-5 py-3 text-slate-400">₹{currency(v.acquisitionCost)}</td>
+                  <tr key={v.id} className="border-t border-[var(--border)]/60 hover:bg-[var(--surface-muted)]">
+                    <td className="px-5 py-4 font-medium text-[var(--foreground)]">{v.regNumber}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{v.name}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{v.type}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{currency(v.maxLoadKg)} kg</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">{currency(v.odometer)}</td>
+                    <td className="px-5 py-3 text-[var(--muted-foreground)]">₹{currency(v.acquisitionCost)}</td>
                     <td className="px-5 py-3"><Badge status={v.status} /></td>
                     {editable && (
                       <td className="px-5 py-3 text-right">
@@ -102,7 +102,7 @@ export default function Vehicles() {
         )}
       </Card>
 
-      <p className="mt-3 text-xs text-primary/80">
+      <p className="mt-3 text-xs text-[var(--muted-foreground)]">
         Registration numbers are unique · Retired and In-Shop vehicles are hidden from trip dispatch.
       </p>
 
@@ -163,7 +163,7 @@ function VehicleModal({ vehicle, onClose, onSaved }) {
         </>
       }
     >
-      {error && <div className="mb-4 rounded-lg border border-status-retired/40 bg-status-retired/10 px-3 py-2 text-sm text-status-retired">{error}</div>}
+      {error && <div className="mb-4 rounded-2xl border border-[var(--destructive)]/30 bg-[var(--destructive)]/10 px-3 py-2 text-sm text-[var(--destructive)]">{error}</div>}
       <div className="grid grid-cols-2 gap-4">
         <Field label="Reg Number">
           <Input value={form.regNumber} onChange={set('regNumber')} disabled={isEdit} placeholder="GJ01AB1452" />
