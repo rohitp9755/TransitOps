@@ -358,25 +358,25 @@ TransitOps
 
 <table>
 <tr>
-<td align="center" width="25%">
+<td align="center">
 <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Aman" width="70"/><br/>
 <b>Aman Jaiswal</b><br/>
-<sub>Analytics • Integration</sub>
+<sub style="white-space:nowrap;">Analytics • Integration</sub>
 </td>
-<td align="center" width="25%">
+<td align="center">
 <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Ayush" width="70"/><br/>
 <b>Ayush Awasthi</b><br/>
-<sub>Frontend • UI/UX</sub>
+<sub style="white-space:nowrap;">Frontend • UI/UX</sub>
 </td>
-<td align="center" width="25%">
+<td align="center">
 <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Neel" width="70"/><br/>
 <b>Neel Lapsiwala</b><br/>
-<sub>Backend • Authentication</sub>
+<sub style="white-space:nowrap;">Backend • Authentication</sub>
 </td>
-<td align="center" width="25%">
+<td align="center">
 <img src="https://api.dicebear.com/7.x/thumbs/svg?seed=Rohit" width="70"/><br/>
 <b>Rohit Prajapat</b><br/>
-<sub>Fleet Logic • Dispatch Engine</sub>
+<sub style="white-space:nowrap;">Fleet Logic • Dispatch Engine</sub>
 </td>
 </tr>
 </table>
